@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <title>Hex</title>
+    <script src="hexagon.js"></script>
+</head>
+<body>
+	Player: <input type="number" id="player" value="0">
+	Players: <input type="number" id="players" value="2">
+	Plays: <input type="string" id="plays" value="">
+	<button onclick="playplays()">Play!</button>	
+	<br>
+	<canvas id="HexCanvas" width="900" height="900"></canvas>
+	<br>
+	Tiles: <input type="number" id="tiles" value="19">
+	Tilesize: <input type="number" id="tilesize" value="21">
+	Colors: <input type="string" id="colors" value="255,0,0;0,255,0;0,0,255">
+	<br>
+	<button onclick="refresh()">Refresh</button>	
+	
+    <script>
+	var nt = document.getElementById("tiles").value;
+	var ts = document.getElementById("tilesize").value;
+	var hexagonGrid = new HexagonGrid("HexCanvas", ts);
+        hexagonGrid.drawHexGrid(nt, nt, 5, 5, true);
+	function refresh(){
+		var nt = document.getElementById("tiles").value;
+		hexagonGrid.drawHexGrid(nt, nt, 5, 5, true);
+		hexagonGrid.drawHexAtColRow(5,7,"rgba(255,0,0,0.3)");
+	}
+	function playplays(){
+		var plays=(document.getElementById("plays").value).split(";");
+		var c=(document.getElementById("colors").value).split(";");
+		for (i = 0; i < plays.length; i++) {
+			var p=plays[i].split(":");
+			var player=p[0];
+			var q=p[1].split(",");
+			hexagonGrid.drawHexAtColRow(q[0],q[1],"rgba("+c[player]+",0.3)");
+		}
+	}
+    </script>
+
+</body>

@@ -213,6 +213,6 @@ HexagonGrid.prototype.clickEvent = function (e) {
 	var c=(document.getElementById("colors").value).split(";");
 	this.drawHex(drawx, drawy, "rgba("+c[p]+",0.3)", "");
 	document.getElementById("player").value=(Number(p)+1)%ps;
-	document.getElementById("plays").value+=p+":"+tile.column+","+tile.row+";";
+	document.getElementById("plays").value+=p+":"+drawx+","+drawy+";";
     } 
 };
